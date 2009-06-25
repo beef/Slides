@@ -1,0 +1,7 @@
+= slides
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Daniel Craig. See LICENSE for details.
