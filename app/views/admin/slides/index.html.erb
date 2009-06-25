@@ -1,0 +1,30 @@
+<h1>Listing slides</h1>
+
+<ul class="choices">
+  <li><%= link_to 'New slide', new_admin_slide_path %></li>
+</ul>  
+
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <td>Status</td>
+    <th>Published at</th>
+    <th>Published to</th>
+    <th>Actions</th>
+  </tr>
+
+<% @slides.each do |slide| %>
+  <tr>
+    <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
+    <td><%=h slide.title %></td>
+    <td><%= article_status(slide) %></td>
+    <td><%=h slide.published_at.strftime('%d %b') unless slide.published_at.blank? %></td>
+    <td><%=h slide.published_to.strftime('%d %b') unless slide.published_to.blank? %></td>
+    <td>
+      <%= link_to 'Edit', [:admin, slide], :class => 'edit' %>
+      <%= link_to 'Destroy', [:admin, slide], :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %>
+    </td>
+  </tr>
+<% end %>
+</table>

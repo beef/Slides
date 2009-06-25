@@ -1,0 +1,46 @@
+<h1>Editing slide</h1>
+
+<% form_for([:admin, @slide], :html => { :multipart => true}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :strapline %><br />
+    <%= f.text_field :strapline %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.text_field :date %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :uploaded_data, "Image" %><br />
+    <%= f.file_field :uploaded_data %>
+  </p>
+  <div class="module">
+	
+  <p><%= f.label :published_at %><br/>
+  <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_at(this.checked)', :id => 'live' %>
+  <span id="published_at"><%= f.datetime_select 'published_at', :disabled => params[:live] ? nil : 'disabled'  %></span></p>
+  
+  <p><%= f.label :published_to %><br/>  
+  <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_to(this.checked)', :id => 'live' %>
+  <span id="published_to"><%= f.datetime_select 'published_to', :disabled => params[:live] ? nil : 'disabled'  %></span></p>
+  
+  <p class="submission">
+    <%= f.submit 'Save as Draft', :class => 'button' %> or <%= link_to 'Cancel', admin_articles_path %>
+  </p>
+  <p class="commit"><%= f.submit 'Go Live' if current_user.authorised?(1) %></p>
+  </div>
+<% end %>
+
+<% content_for :sub_content do %>
+	<h2>Current Image</h2>
+	<%= image_tag @slide.public_filename(), :width => '100%' %>
+<% end unless @slide.new_record? or @slide.filename == 'no_file' %>
