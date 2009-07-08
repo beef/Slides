@@ -5,26 +5,47 @@
 </ul>  
 
 <table>
-  <tr>
-    <th>Image</th>
-    <th>Title</th>
-    <td>Status</td>
-    <th>Published at</th>
-    <th>Published to</th>
-    <th>Actions</th>
-  </tr>
+  <thead>
+    <tr>
+      <%= sortable_table_header :name => "Position",  :sort => "position" %>
+      <th>Image</th>
+      <%= sortable_table_header :name => "Title",  :sort => "title" %>
+      <td>Status</td>
+      <%= sortable_table_header :name => "Published At",  :sort => "published_at" %>
+      <%= sortable_table_header :name => "Published To",  :sort => "published_to" %>
+      <th>Actions</th>
+    </tr>
+  </thead>
 
+  <tbody>
 <% @slides.each do |slide| %>
-  <tr>
-    <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
-    <td><%=h slide.title %></td>
-    <td><%= article_status(slide) %></td>
-    <td><%=h slide.published_at.strftime('%d %b') unless slide.published_at.blank? %></td>
-    <td><%=h slide.published_to.strftime('%d %b') unless slide.published_to.blank? %></td>
-    <td>
-      <%= link_to 'Edit', [:admin, slide], :class => 'edit' %>
-      <%= link_to 'Destroy', [:admin, slide], :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %>
-    </td>
-  </tr>
+    <tr>
+      <th><%=h (slide.position || 0) + 1 %></th>
+      <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
+      <td><%=h slide.title %></td>
+      <td><%= content_status(slide) %></td>
+      <td><%=h slide.published_at.strftime('%d %b') unless slide.published_at.blank? %></td>
+      <td><%=h slide.published_to.strftime('%d %b') unless slide.published_to.blank? %></td>
+      <td>
+        <%= link_to 'Move Up', move_up_admin_slide_path(slide), :class => 'move-up' unless slide.position == 0 %>
+        <%= link_to 'Move Down', move_down_admin_slide_path(slide), :class => 'move-down' unless slide.position == @slides.length-1 %>
+        <%= link_to 'Edit', [:admin, slide], :class => 'edit' %>
+        <%= link_to 'Destroy', [:admin, slide], :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %>
+      </td>
+    </tr>
 <% end %>
+  <tbody>
+
+  <tfoot>
+    <tr>
+      <%= sortable_table_header :name => "Position",  :sort => "position" %>
+      <th>Image</th>
+      <%= sortable_table_header :name => "Title",  :sort => "title" %>
+      <td>Status</td>
+      <%= sortable_table_header :name => "Published At",  :sort => "published_at" %>
+      <%= sortable_table_header :name => "Published To",  :sort => "published_to" %>
+      <th>Actions</th>
+    </tr>
+  </tfoot>
+
 </table>

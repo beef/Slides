@@ -12,10 +12,6 @@
     <%= f.text_field :strapline %>
   </p>
   <p>
-    <%= f.label :date %><br />
-    <%= f.text_field :date %>
-  </p>
-  <p>
     <%= f.label :link %><br />
     <%= f.text_field :link %>
   </p>
@@ -25,19 +21,14 @@
   </p>
   <div class="module">
 	
-  <p><%= f.label :published_at %><br/>
-  <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_at(this.checked)', :id => 'live' %>
-  <span id="published_at"><%= f.datetime_select 'published_at', :disabled => params[:live] ? nil : 'disabled'  %></span></p>
-  
-  <p><%= f.label :published_to %><br/>  
-  <%= check_box_tag 'live', true, params[:live], :onclick => 'toggle_published_to(this.checked)', :id => 'live' %>
-  <span id="published_to"><%= f.datetime_select 'published_to', :disabled => params[:live] ? nil : 'disabled'  %></span></p>
+  <%= publish_select(f) %>
   
   <p class="submission">
-    <%= f.submit 'Save as Draft', :class => 'button' %> or <%= link_to 'Cancel', admin_articles_path %>
+    <%= f.submit 'Publish', :name => 'slide[publish]' %>
+    <%= f.submit 'Save as draft', :name => 'slide[hide]' %>
+     or <%= link_to 'Cancel', admin_slides_path %>
   </p>
-  <p class="commit"><%= f.submit 'Go Live' if current_user.authorised?(1) %></p>
-  </div>
+    </div>
 <% end %>
 
 <% content_for :sub_content do %>

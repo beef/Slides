@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "slides"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Slide show generation}
     gem.email = "daniel@wearebeef.co.uk"
     gem.homepage = "http://github.com/dougle/slides"
     gem.authors = ["Daniel Craig"]

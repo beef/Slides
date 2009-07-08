@@ -1,8 +1,10 @@
 class Admin::SlidesController < Admin::BaseController
+  sortable_attributes :position, :title, :published_at, :published_to
+  
   # GET /slides
   # GET /slides.xml
   def index
-    @slides = Slide.all
+    @slides = Slide.paginate :page => params[:page], :order => sort_order
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,12 +39,6 @@ class Admin::SlidesController < Admin::BaseController
   def create
     @slide = Slide.new(params[:slide])
     
-    if current_user.authorised?(1)
-      @slide.publish = params[:commit] == 'Go Live'
-    else
-      @slide.publish = false
-    end
-
     respond_to do |format|
       if @slide.save
         flash[:notice] = 'Slide was successfully created.'
@@ -60,15 +56,6 @@ class Admin::SlidesController < Admin::BaseController
   def update
     @slide = Slide.find(params[:id])
     
-    if current_user.authorised?(1)
-      case params[:commit]
-      when 'Go Live'
-        @slide.publish = true
-      when 'Save as Draft'
-        @slide.hide = true
-      end
-    end
-
     respond_to do |format|
       if @slide.update_attributes(params[:slide])
         flash[:notice] = 'Slide was successfully updated.'
@@ -90,6 +77,29 @@ class Admin::SlidesController < Admin::BaseController
     respond_to do |format|
       format.html { redirect_to(admin_slides_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  
+  def move_up
+    @slide = Slide.find(params[:id])
+    @slide.move_higher
+    @slide.save
+    
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.xml  { render :xml => @slide }
+    end
+  end
+  
+  def move_down
+    @slide = Slide.find(params[:id])
+    @slide.move_lower
+    @slide.save
+    
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.xml  { render :xml => @slide }
     end
   end
 end
