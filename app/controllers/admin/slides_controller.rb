@@ -4,7 +4,7 @@ class Admin::SlidesController < Admin::BaseController
   # GET /slides
   # GET /slides.xml
   def index
-    @slides = Slide.paginate :page => params[:page], :order => sort_order
+    @slides = Slide.paginate :page => params[:page], :order => sort_order(:default => 'asc')
 
     respond_to do |format|
       format.html # index.html.erb
