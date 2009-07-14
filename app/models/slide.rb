@@ -4,13 +4,11 @@ class Slide < ActiveRecord::Base
   has_attachment :storage => :file_system, #Should be changed to S3 for production
                  :path_prefix => 'public/assets/slides', #Should be changed to S3 for production
                  :max_size => 5.megabytes,
-                 :content_type => :image,
-                 :resize_to => resize_to
+                 :content_type => :image
                    
   validates_presence_of :size, :content_type, :if => :has_file?
   validate              :attachment_attributes_valid?, :if => :has_file?
   
-  cattr_accessor :resize_to
   attr_accessible :title, :date, :link, :strapline, :publish, :hide, :uploaded_data
 
   default_scope :order => 'position ASC'
