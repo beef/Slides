@@ -1,7 +1,7 @@
-<h1>Listing slides</h1>
+<h1>Listing slides for <%= @slide_show.title %></h1>
 
 <ul class="choices">
-  <li><%= link_to 'New slide', new_admin_slide_path %></li>
+  <li><%= link_to 'New slide', new_admin_slide_show_slide_path(@slide_show) %></li>
 </ul>  
 
 <table>
@@ -27,10 +27,10 @@
       <td><%=h slide.published_at.strftime('%d %b') unless slide.published_at.blank? %></td>
       <td><%=h slide.published_to.strftime('%d %b') unless slide.published_to.blank? %></td>
       <td>
-        <%= link_to 'Move Up', move_up_admin_slide_path(slide), :class => 'move-up' unless slide.position == 0 %>
-        <%= link_to 'Move Down', move_down_admin_slide_path(slide), :class => 'move-down' unless slide.position == @slides.length-1 %>
-        <%= link_to 'Edit', [:admin, slide], :class => 'edit' %>
-        <%= link_to 'Destroy', [:admin, slide], :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %>
+        <%= link_to 'Move Up', move_up_admin_slide_path(slide), :class => 'move-up' unless slide.first? %>
+        <%= link_to 'Move Down', move_down_admin_slide_path(slide), :class => 'move-down' unless slide.last? %>
+        <%= link_to 'Edit', admin_slide_path(slide), :class => 'edit' %>
+        <%= link_to 'Destroy', admin_slide_path(slide), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %>
       </td>
     </tr>
 <% end %>

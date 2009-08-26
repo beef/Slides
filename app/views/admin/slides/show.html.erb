@@ -1,6 +1,7 @@
 <h1>Editing slide</h1>
 
 <% form_for([:admin, @slide], :html => { :multipart => true}) do |f| %>
+  <%= f.hidden_field :slide_show_id %>
   <%= f.error_messages %>
 
   <p>
@@ -26,7 +27,7 @@
   <p class="submission">
     <%= f.submit 'Publish', :name => 'slide[publish]' %>
     <%= f.submit 'Save as draft', :name => 'slide[hide]' %>
-     or <%= link_to 'Cancel', admin_slides_path %>
+     or <%= link_to 'Cancel', admin_slide_show_slides_path(@slide.slide_show_id) %>
   </p>
     </div>
 <% end %>

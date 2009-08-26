@@ -1,4 +1,5 @@
 class SlideShowsController < ApplicationController
+  unloadable
   # GET /slide_shows
   # GET /slide_shows.xml
   def index
@@ -11,4 +12,13 @@ class SlideShowsController < ApplicationController
     end
   end
 
+
+  def show
+    @slide_show = SlideShow.find_by_permalink(params[:id])
+  #raise
+    @slides = @slide_show.slides.published
+    respond_to do |format|
+      format.json  { render :json => @slides }
+    end
+  end
 end

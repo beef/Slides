@@ -7,12 +7,8 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
-  <p>
-    <%= f.label :permalink %><br />
-    <%= f.text_field :permalink %>
-  </p>
   <p class="submission">
-    <%= f.submit @slide_show.new_record? ? 'Create' : 'Update', :disable_with => 'Submitting...' %> or <%= link_to 'Back', admin_slide_shows_path %>
+    <%= f.submit @slide_show.new_record? ? 'Create' : 'Update', :disable_with => 'Submitting...' %> or <%= link_to 'Cancel', admin_slide_shows_path %>
   </p>
 <% end %>
 

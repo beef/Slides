@@ -1,4 +1,5 @@
 class SlidesController < ApplicationController
+  unloadable
 
   def index
     respond_to do |format|
