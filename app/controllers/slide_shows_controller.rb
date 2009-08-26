@@ -1,5 +1,4 @@
 class SlideShowsController < ApplicationController
-  unloadable
   # GET /slide_shows
   # GET /slide_shows.xml
   def index
