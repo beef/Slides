@@ -1,0 +1,33 @@
+<h1>Listing slide_shows</h1>
+
+<ul class="choices">
+  <li><%= link_to 'New slide_show', new_admin_slide_show_path %></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <%= sortable_table_header :name => "Title",  :sort => "title" %>
+      <th># Slides</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @slide_shows.each do |slide_show| %>
+    <tr id="slide_show-<%= slide_show.id %>">
+      <td><%= link_to slide_show.title, admin_slide_show_path(slide_show) %></td>
+      <td><%= slide_show.slides.count %> <%= "Slide#{slide_show.slides.count !=1 ? 's' : ''}" %></td>
+      <td><%= link_to 'Slides', admin_slides_path(slide_show), :class => 'view' %></td>
+      <td><%= link_to 'Edit', admin_slide_show_path(slide_show), :class => 'edit' %></td>
+      <td><%= link_to 'Destroy', admin_slide_show_path(slide_show), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></td>
+    </tr>
+<% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <%= sortable_table_header :name => "Title",  :sort => "title" %>
+      <th># Slides</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </tfoot>
+</table>

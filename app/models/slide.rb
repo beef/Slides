@@ -8,7 +8,8 @@ class Slide < ActiveRecord::Base
                    
   validates_presence_of :size, :content_type, :if => :has_file?
   validate              :attachment_attributes_valid?, :if => :has_file?
-  
+  belongs_to :slide_show
+
   attr_accessible :title, :date, :link, :strapline, :publish, :hide, :uploaded_data
 
   default_scope :order => 'position ASC'

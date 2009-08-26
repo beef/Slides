@@ -11,8 +11,14 @@ class CreateSlides < ActiveRecord::Migration
       t.string :filename, :default => 'no_file'
       t.string :content_type 
       t.integer :size, :height, :width
-      t.references :parent
+      t.references :parent, :slide_show
       t.string :thumbnail
+
+      t.timestamps
+    end
+    
+   create_table :slide_shows do |t|
+      t.string :title, :permalink
 
       t.timestamps
     end
@@ -20,5 +26,6 @@ class CreateSlides < ActiveRecord::Migration
 
   def self.down
     drop_table :slides
+    drop_table :slide_shows
   end
 end
