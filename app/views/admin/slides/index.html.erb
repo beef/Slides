@@ -11,6 +11,8 @@
       <th>Image</th>
       <%= sortable_table_header :name => "Title",  :sort => "title" %>
       <td>Status</td>
+      <%= sortable_table_header :name => "Created At",  :sort => "created_at" %>
+      <%= sortable_table_header :name => "Updated At",  :sort => "updated_at" %>
       <%= sortable_table_header :name => "Published At",  :sort => "published_at" %>
       <%= sortable_table_header :name => "Published To",  :sort => "published_to" %>
       <th>Actions</th>
@@ -24,6 +26,8 @@
       <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
       <td><%=h slide.title %></td>
       <td><%= content_status(slide) %></td>
+      <td><%=h slide.created_at.strftime('%d %b') %></td>
+      <td><%=h slide.updated_at.strftime('%d %b') %></td>
       <td><%=h slide.published_at.strftime('%d %b') unless slide.published_at.blank? %></td>
       <td><%=h slide.published_to.strftime('%d %b') unless slide.published_to.blank? %></td>
       <td>
@@ -42,6 +46,8 @@
       <th>Image</th>
       <%= sortable_table_header :name => "Title",  :sort => "title" %>
       <td>Status</td>
+      <%= sortable_table_header :name => "Created At",  :sort => "created_at" %>
+      <%= sortable_table_header :name => "Updated At",  :sort => "updated_at" %>
       <%= sortable_table_header :name => "Published At",  :sort => "published_at" %>
       <%= sortable_table_header :name => "Published To",  :sort => "published_to" %>
       <th>Actions</th>
