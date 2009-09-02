@@ -74,13 +74,11 @@ class Admin::SlidesController < Admin::BaseController
   # DELETE /slides/1.xml
   def destroy
     @slide = Slide.find(params[:id])
-    @slide_show = @slide.slide_show
+    slide_show = @slide.slide_show
     @slide.destroy
-    
-    @slide_show.reindex
-    
+
     respond_to do |format|
-      format.html { redirect_to(admin_slide_show_slides_url(@slide_show)) }
+      format.html { redirect_to(admin_slide_show_slides_url(slide_show)) }
       format.xml  { head :ok }
     end
   end
