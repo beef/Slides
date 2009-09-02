@@ -22,7 +22,7 @@
   <tbody>
 <% @slides.each do |slide| %>
     <tr>
-      <th><%=h (slide.position || 0) + 1 %></th>
+      <th><%= slide.position %></th>
       <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
       <td><%=h slide.title %></td>
       <td><%= content_status(slide) %></td>

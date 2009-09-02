@@ -20,14 +20,6 @@ class Slide < ActiveRecord::Base
   end
 
 private
-  def reindex
-    if self.created_at == self.updated_at #i.e. a new record
-      Slide.all(:order => 'position ASC, created_at DESC', :conditions => ['id != ', self.id]).each_with_index do |slide, index|
-        slide.update_attribute(:position, index)
-      end
-    end
-  end
-  
   def has_file?
     filename != 'no_file'
   end
