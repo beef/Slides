@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{slides}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Craig"]
-  s.date = %q{2009-07-14}
+  s.date = %q{2009-09-02}
   s.email = %q{daniel@wearebeef.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -19,10 +19,15 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "app/controllers/admin/slide_shows_controller.rb",
      "app/controllers/admin/slides_controller.rb",
+     "app/controllers/slide_shows_controller.rb",
      "app/controllers/slides_controller.rb",
      "app/helpers/slides_helper.rb",
      "app/models/slide.rb",
+     "app/models/slide_show.rb",
+     "app/views/admin/slide_shows/index.html.erb",
+     "app/views/admin/slide_shows/show.html.erb",
      "app/views/admin/slides/index.html.erb",
      "app/views/admin/slides/show.html.erb",
      "config/routes.rb",
@@ -31,16 +36,18 @@ Gem::Specification.new do |s|
      "lib/slides.rb",
      "public/javascripts/swfobject.js",
      "slides.gemspec",
+     "test/slide_show_test.rb",
      "test/slides_test.rb",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/dougle/slides}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.3}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{Slide show generation}
   s.test_files = [
-    "test/slides_test.rb",
+    "test/slide_show_test.rb",
+     "test/slides_test.rb",
      "test/test_helper.rb"
   ]
 
