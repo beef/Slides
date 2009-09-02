@@ -1,7 +1,7 @@
 <h1>Listing slide shows</h1>
 
 <ul class="choices">
-  <li><%= link_to 'New slide_show', new_admin_slide_show_path %></li>
+  <li><%= link_to 'New slide show', new_admin_slide_show_path %></li>
 </ul>
 
 <table>
@@ -15,8 +15,8 @@
   <tbody>
 <% @slide_shows.each do |slide_show| %>
     <tr id="slide_show-<%= slide_show.id %>">
-      <td><%= link_to slide_show.title, admin_slide_show_path(slide_show) %></td>
-      <td><%= link_to pluralize(slide_show.slides.count, "Slide"), admin_slide_show_slides_path(slide_show), :class => 'view', :title => 'Click to view these slides' %></td>
+      <td><%= link_to slide_show.title, admin_slide_show_slides_path(slide_show) %></td>
+      <td><%= pluralize(slide_show.slides.count, "Slide") %></td>
       <td><%= link_to 'Edit', admin_slide_show_path(slide_show), :class => 'edit' %></td>
       <td><%= link_to 'Destroy', admin_slide_show_path(slide_show), :confirm => 'Are you sure?', :method => :delete, :class => 'delete' %></td>
     </tr>
