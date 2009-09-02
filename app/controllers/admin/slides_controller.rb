@@ -43,6 +43,7 @@ class Admin::SlidesController < Admin::BaseController
     
     respond_to do |format|
       if @slide.save
+        @slide.slide_show.reindex
         flash[:notice] = 'Slide was successfully created.'
         format.html { redirect_to(admin_slide_show_slides_url(@slide.slide_show)) }
         format.xml  { render :xml => @slide, :status => :created, :location => @slide }
