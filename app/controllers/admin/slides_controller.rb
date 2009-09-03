@@ -4,8 +4,8 @@ class Admin::SlidesController < Admin::BaseController
   # GET /slides
   # GET /slides.xml
   def index
-    @slide_show = SlideShow.find(params[:slide_show_id])
-    @slides = @slide_show.slides.paginate :page => params[:page], :order => sort_order(:default => 'asc')
+    @slide_show = SlideShow.find(params[:slide_show_id]) if params[:slide_show_id]
+    @slides = ( @slide_show ? @slide_show.slides : Slide ).paginate :page => params[:page], :order => sort_order(:default => 'asc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +44,7 @@ class Admin::SlidesController < Admin::BaseController
     respond_to do |format|
       if @slide.save
         flash[:notice] = 'Slide was successfully created.'
-        format.html { redirect_to(admin_slide_show_slides_url(@slide.slide_show)) }
+        format.html { redirect_to( @slide.slide_show ? admin_slide_show_slides_url(@slide.slide_show) : admin_slides_url ) }
         format.xml  { render :xml => @slide, :status => :created, :location => @slide }
       else
         format.html { render :action => "show" }
@@ -61,7 +61,7 @@ class Admin::SlidesController < Admin::BaseController
     respond_to do |format|
       if @slide.update_attributes(params[:slide])
         flash[:notice] = 'Slide was successfully updated.'
-        format.html { redirect_to(admin_slide_show_slides_url(@slide.slide_show)) }
+        format.html { redirect_to( @slide.slide_show ? admin_slide_show_slides_url(@slide.slide_show) : admin_slides_url ) }
         format.xml  { head :ok }
       else
         format.html { render :action => "show" }
@@ -74,11 +74,10 @@ class Admin::SlidesController < Admin::BaseController
   # DELETE /slides/1.xml
   def destroy
     @slide = Slide.find(params[:id])
-    slide_show = @slide.slide_show
     @slide.destroy
 
     respond_to do |format|
-      format.html { redirect_to(admin_slide_show_slides_url(slide_show)) }
+      format.html { redirect_to( @slide.slide_show ? admin_slide_show_slides_url(@slide.slide_show) : admin_slides_url ) }
       format.xml  { head :ok }
     end
   end

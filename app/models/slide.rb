@@ -1,6 +1,6 @@
 class Slide < ActiveRecord::Base
   acts_as_publishable
-  acts_as_list :insert_position => :top, :scope => :slide_show_id
+  acts_as_list :scope => :slide_show_id
   has_attachment :storage => :file_system, #Should be changed to S3 for production
                  :path_prefix => 'public/assets/slides', #Should be changed to S3 for production
                  :max_size => 5.megabytes,
