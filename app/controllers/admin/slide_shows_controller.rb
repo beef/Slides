@@ -72,12 +72,17 @@ class Admin::SlideShowsController < Admin::BaseController
   # DELETE /slide_shows/1.xml
   def destroy
     @slide_show = SlideShow.find(params[:id])
-    @slide_show.destroy
-    flash[:notice] = 'SlideShow was successfully deleted.'
-
-    respond_to do |format|
-      format.html { redirect_to(admin_slide_shows_url) }
-      format.xml  { head :ok }
+    if @slide_show.lock_level >0
+      flash[:notice] = 'This Slide Show is locked.'
+      redirect_to(:back)
+    else
+      @slide_show.destroy
+      flash[:notice] = 'SlideShow was successfully deleted.'
+  
+      respond_to do |format|
+        format.html { redirect_to(admin_slide_shows_url) }
+        format.xml  { head :ok }
+      end
     end
   end
 end
