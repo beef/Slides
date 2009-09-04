@@ -1,4 +1,4 @@
-<h1>Listing slides<%= " for #{@slide_show.title}" if @slide_show %></h1>
+<h1>Listing Slides<%= " for #{@slide_show.title}" if @slide_show %></h1>
 
 <ul class="choices">
   <li><%= link_to 'New slide', @slide_show ? new_admin_slide_show_slide_path(@slide_show) : new_admin_slide_path %></li>
