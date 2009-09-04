@@ -13,7 +13,8 @@ class CreateSlides < ActiveRecord::Migration
       t.integer :size, :height, :width
       t.references :parent, :slide_show
       t.string :thumbnail
-
+      t.integer :lock_level, :default => 0
+      
       t.timestamps
     end
     

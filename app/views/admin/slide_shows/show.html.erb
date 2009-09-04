@@ -3,10 +3,19 @@
 <% form_for([:admin, @slide_show]) do |f| %>
   <%= f.error_messages %>
 
+<% if @slide_show.lock_level < 3 %>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
+<% else %>
+  <p>
+    <%= f.label :title %><br />
+    <%= @slide_show.title %> (locked)
+  </p>
+<% end %>
+
+
   <p class="submission">
     <%= f.submit @slide_show.new_record? ? 'Create' : 'Update', :disable_with => 'Submitting...' %> or <%= link_to 'Cancel', admin_slide_shows_path %>
   </p>
