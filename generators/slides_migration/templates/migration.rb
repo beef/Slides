@@ -3,7 +3,6 @@ class CreateSlides < ActiveRecord::Migration
     create_table :slides do |t|
       t.string :title
       t.string :strapline
-      t.text :body
       t.string :link
       t.integer :position, :default => 0
       t.datetime :published_at
