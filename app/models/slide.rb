@@ -14,6 +14,8 @@ class Slide < ActiveRecord::Base
 
   default_scope :order => 'position ASC'
 
+  before_save :correct_url
+  
   def to_json(options = {})
     options.reverse_merge! :methods => :public_filename, :only => [:title, :strapline, :link, :date]
     super options
@@ -22,5 +24,10 @@ class Slide < ActiveRecord::Base
 private
   def has_file?
     filename != 'no_file'
+  end
+  
+  
+  def correct_url
+    write_attribute :link, self.link.gsub(/^http\:\/\//i,'') unless self.link.nil?
   end
 end
