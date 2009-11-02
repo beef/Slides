@@ -4,14 +4,14 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "slides"
+    gem.name = "beef-slides"
     gem.summary = %Q{Slide show generation}
     gem.email = "daniel@wearebeef.co.uk"
-    gem.homepage = "http://github.com/dougle/slides"
+    gem.homepage = "http://github.com/beef/slides"
     gem.authors = ["Daniel Craig"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
-
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
