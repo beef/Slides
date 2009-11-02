@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{beef-slides}
-  s.version = "1.1.6"
+  s.version = "1.1.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Craig"]
@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
      "app/views/admin/slide_shows/show.html.erb",
      "app/views/admin/slides/index.html.erb",
      "app/views/admin/slides/show.html.erb",
+     "beef-slides.gemspec",
      "config/routes.rb",
      "generators/slides_migration/slides_migration_generator.rb",
      "generators/slides_migration/templates/migration.rb",
