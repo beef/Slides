@@ -77,7 +77,10 @@ class Admin::SlidesController < Admin::BaseController
     @slide.destroy
 
     respond_to do |format|
-      format.html { redirect_to( @slide.slide_show ? admin_slide_show_slides_url(@slide.slide_show) : admin_slides_url ) }
+      format.html do
+        flash[:notice] = 'Slide was successfully deleted.'
+        redirect_to( @slide.slide_show ? admin_slide_show_slides_url(@slide.slide_show) : admin_slides_url )
+      end
       format.xml  { head :ok }
     end
   end
