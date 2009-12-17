@@ -26,10 +26,10 @@
       <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
       <td><%=h slide.title %></td>
       <td><%= content_status(slide) %></td>
-      <td><%=h slide.created_at.strftime('%d %b') %></td>
-      <td><%=h slide.updated_at.strftime('%d %b') %></td>
-      <td><%=h slide.published_at.strftime('%d %b') unless slide.published_at.blank? %></td>
-      <td><%=h slide.published_to.strftime('%d %b') unless slide.published_to.blank? %></td>
+      <td><%=h slide.to_formatted_s(:short) %></td>
+      <td><%=h slide.to_formatted_s(:short) %></td>
+      <td><%=h slide.published_at.to_formatted_s(:short) unless slide.published_at.blank? %></td>
+      <td><%=h slide.published_to.to_formatted_s(:short) unless slide.published_to.blank? %></td>
       <td>
         <%= link_to 'Move Up', move_up_admin_slide_path(slide), :class => 'move-up' unless slide.first? %>
         <%= link_to 'Move Down', move_down_admin_slide_path(slide), :class => 'move-down' unless slide.last? %>
