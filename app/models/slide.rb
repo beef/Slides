@@ -10,7 +10,7 @@ class Slide < ActiveRecord::Base
   validate              :attachment_attributes_valid?, :if => :has_file?
   belongs_to :slide_show
 
-  attr_accessible :slide_show_id, :title, :date, :link, :strapline, :publish, :hide, :uploaded_data, :body
+  attr_accessible :slide_show_id, :title, :date, :link, :strapline, :publish, :hide, :uploaded_data, :body, :published_at, :published_to
 
   default_scope :order => 'position ASC'
 
