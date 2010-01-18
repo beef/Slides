@@ -9,17 +9,17 @@ class CreateSlides < ActiveRecord::Migration
       t.datetime :published_to
 
       t.string :filename, :default => 'no_file'
-      t.string :content_type 
+      t.string :content_type
       t.integer :size, :height, :width
       t.references :parent, :slide_show
       t.string :thumbnail
-      t.integer :lock_level, :default => 0
-      
+
       t.timestamps
     end
-    
+
    create_table :slide_shows do |t|
       t.string :title, :permalink
+      t.integer :lock_level, :default => 0
 
       t.timestamps
     end
