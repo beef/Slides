@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{beef-slides}
-  s.version = "1.1.10"
+  s.version = "1.1.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Craig"]
-  s.date = %q{2010-01-18}
+  s.date = %q{2010-02-24}
   s.email = %q{daniel@wearebeef.co.uk}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -49,8 +49,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Slide show generation}
   s.test_files = [
-    "test/slide_show_test.rb",
-     "test/slides_test.rb",
+    "test/slides_test.rb",
+     "test/slide_show_test.rb",
      "test/test_helper.rb"
   ]
 
