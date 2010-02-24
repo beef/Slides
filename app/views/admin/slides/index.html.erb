@@ -23,7 +23,7 @@
 <% @slides.each do |slide| %>
     <tr>
       <td><%= slide.position %></td>
-      <td><%= image_tag slide.public_filename, :width => 100 unless slide.filename == 'no_file' %></td>
+      <td><%= image_tag slide.public_filename(:slide), :width => 100 unless slide.filename == 'no_file' %></td>
       <td><%=h slide.title %></td>
       <td><%= content_status(slide) %></td>
       <td><%=h slide.created_at.to_formatted_s(:short) %></td>
